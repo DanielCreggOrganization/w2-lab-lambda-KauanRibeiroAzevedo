@@ -2,15 +2,20 @@ package ie.atu.lambda;
 
 public class Main {
     public static void main(String[] args) {
-        // Using a lambda expression to implement StringOperation
-        StringOperation toUpperCase = (String input) -> input.toUpperCase();
+        
+        Runnable runnable = () -> System.out.println("Hello from the thread");
 
-        // Test the lambda with a string
-        String result = toUpperCase.apply("hello world");
+        Thread thread = new Thread(runnable);
+        thread.start();
 
-        // Print the result
-        System.out.println(result); 
+        
+        try {
+            thread.join();  
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
+
 
 
